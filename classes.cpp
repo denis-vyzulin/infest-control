@@ -1,3 +1,6 @@
+#include <vector>
+#include "Epidemic.h"
+#include "Measures.h"
 #include <iostream>
 #include <string>
 
@@ -41,3 +44,19 @@ public:
         return progress_day;
     }
 };
+
+
+#ifndef EPIDEMIC_SYSTEM_H
+#define EPIDEMIC_SYSTEM_H
+class EpidemicSystem {
+private:
+    std::vector<Epidemic> active_epidemics;
+    std::vector<Measures> measures_list;
+
+public:
+    void addVirusFromConsole();
+    void addMeasuresFromConsole();
+    void simulateEpidemic();
+};
+
+#endif // EPIDEMIC_SYSTEM_H
