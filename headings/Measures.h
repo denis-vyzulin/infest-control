@@ -1,14 +1,17 @@
 #include <vector>
 
+
+//==> КЛАСС MEASURE
 #ifndef MEASURES_H_
 #define MEASURES_H_
 
 class Measure {
-private:
-	bool _status;
-	std::vector<int> _rates;
-	std::vector<int> _sesonality;
+	private:
+		bool _status;
+		std::vector<int> _rates;
+		std::vector<int> _sesonality;
 };
+
 namespace Measure {
 	void setStatus(const bool status);
 	void setRates(std::vector<int>&rates);
