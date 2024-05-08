@@ -1,6 +1,8 @@
-#include <iostream>
-#include <classes.cpp>
+// ====================== //
+// == ФАЙЛ НА УДАЛЕНИЕ == //
+// ====================== //
 
+#include <iostream>
 
 
 //==> ФУНКЦИИ КЛАССА EPIDEMIC SYSTEM
@@ -65,39 +67,6 @@ void EpidemicSystem::simulateEpidemic() {
 }
 
 
-
-//==> ФУНКЦИИ КЛАССА MEASURE
-#include "headings/Measures.h"
-
-void Measure::setStatus(const bool status) {
-
-	_status = status;
-}
-
-void Measure::setRates(std::vector<int>&rates) {
-
-	_rates.assign(rates.begin(), rates.end());
-}
-
-void Measure::setSesonality(std::vector<int>&sesonality) {
-
-	_sesonality.assign(sesonality.begin(), sesonality.end())
-}
-
-int Measure::getStatus() {
-
-	return _status;
-}
-
-void Measure::getRates(std::vector<int>&rates) {
-
-	rates.assign(_rates.begin(), _rates.end());
-}
-
-void Measure::getSesonality(std::vector<int>&sesonality) {
-
-	sesonality.assign(_sesonality.begin(), _sesonality.end())
-}
 
 void Measure_data::redRates(std::vector<int>& rates, unsigned int mod) {
 	
