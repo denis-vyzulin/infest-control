@@ -5,13 +5,13 @@
 #include <iostream>
 
 //==> ИМПОРТ ВСЕХ КЛАССОВ
-#include <classes/Saving.h> // Сохранения
-#include <classes/Desease.h> // Болезни
-#include <classes/Measure.h> // Противодействия
+#include "classes/Saving.h" // Сохранения
+#include "classes/Desease.h" // Болезни
+#include "classes/Measure.h" // Противодействия
 
 //==> ИМПОРТ ВСЕХ ДОП.ФУНКЦИЙ
-#include <utils/FileInteraction.h> // Взаимодействие с файлами
-#include <utils/RewindTime.h> // Перемотка времени
+#include "utils/FileInteraction.h" // Взаимодействие с файлами
+#include "utils/RewindTime.h" // Перемотка времени
 
 using namespace std;
 
