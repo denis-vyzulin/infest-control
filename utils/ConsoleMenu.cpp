@@ -2,16 +2,7 @@
 // == КОНСОЛЬНОЕ МЕНЮ == //
 // ===================== //
 
-#include <iostream>
-#include <stdlib.h>
-#include <cstdlib>
-
-//==> ИМПОРТ ДОП.ФУНКЦИЙ
-#include "Saving.h"
-#include "RewindTime.h"
-
-using namespace std;
-
+#include "ConsoleMenu.h"
 
 
 void console_menu() {
@@ -47,7 +38,7 @@ void console_menu() {
         switch (k_sim) {
           case 1: // Load process
             system("cls");
-            loadProcess();
+            loadProcess(); //???
             break;
           case 2: // Select Desease
             system("cls");
@@ -105,32 +96,34 @@ void console_menu() {
         }
         break;
 
-      // For "Export/import Desease or Measure"
+      // For "Import/export Desease or Measure"
       case 3:
         system("cls");
-        cout << "1. Export Deseases | "
-              << "2. Import Deseases\n"
-              << "3. Export Measures | "
-              << "4. Import Measures" << endl;
+        cout << "1. Import Deseases | "
+              << "2. Export Deseases\n"
+              << "3. Import Measures | "
+              << "4. Export Measures" << endl;
         cout << "Enter number >>" << endl;
         
         // Second level (for 3rd case)
         int k_exp_imp;
         cin >> k_exp_imp;
         switch (k_exp_imp) {
-          case 1: // Export Deseases
+          case 1: // Import Deseases
             system("cls");
+            outEpidemic(epidemic, end_of_vector);
             break;
-          case 2: // Import Deseases
+          case 2: // Export Deseases
             system("cls");
+            getEpidemic(epidemic);
             break;
-          case 3: // Export Measures
+          case 3: // Import Measures
             system("cls");
-            outRates(rates);
-            outSesonality(sesonality);
+            outMeasure(measure, end_of_vector);
             break;
-          case 4: // Import Measures
+          case 4: // Export Measures
             system("cls");
+            getMeasure(measure);
             break;
         }
         break;
