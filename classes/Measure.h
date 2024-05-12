@@ -2,32 +2,26 @@
 // == КЛАСС ПРОТИВОДЕЙСТВИЙ == //
 // =========================== //
 
-#include <iostream>
+#ifndef MEASURE_H
+#define MEASURE_H
 
+#include <vector>
 
-// Status of activity (active or inactive)
-void Measure::setStatus(const bool status) {
-	_status = status;
-}
+class Measure {
+public:
+    void setStatus(const bool status);
+    int getStatus();
 
-int Measure::getStatus() {
-	return _status;
-}
+    void setRates(const std::vector<int>& rates);
+    void getRates(std::vector<int>& rates);
 
-// Rates ???
-void Measure::setRates(std::vector<int>&rates) {
-	_rates.assign(rates.begin(), rates.end());
-}
+    void setSeasonality(const std::vector<int>& seasonality);
+    void getSeasonality(std::vector<int>& seasonality);
 
-void Measure::getRates(std::vector<int>&rates) {
-	rates.assign(_rates.begin(), _rates.end());
-}
+private:
+    bool _status;
+    std::vector<int> _rates;
+    std::vector<int> _seasonality;
+};
 
-// Seasonality (Winter, Spring, Summer, Autumn)
-void Measure::setSesonality(std::vector<int>&sesonality) {
-	_sesonality.assign(sesonality.begin(), sesonality.end())
-}
-
-void Measure::getSesonality(std::vector<int>&sesonality) {
-	sesonality.assign(_sesonality.begin(), _sesonality.end())
-}
+#endif // MEASURE_H
