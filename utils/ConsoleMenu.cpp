@@ -23,34 +23,20 @@ void console_menu() {
       // For "Start simulation"
       case 1:
         system("cls");
-        cout << "1. Select saving\n"
-              << "2. Select Desease for simulation\n"
-              << "3. Select Measure for simulation\n"
-              << "4. Simulate... | "
-              << "5. Rewind time | "
-              << "6. Pause\n"
-              << "7. Save progress" << endl;
+        cout << "1. Simulate... | "
+              << "2. Rewind time | "
+              << "3. Pause\n" << endl;
         cout << "Enter number >>" << endl;
 
         // Second level (for 1st case)
         int k_sim;
         cin >> k_sim;
         switch (k_sim) {
-          case 1: // Load process
+          case 1: // Simulation
             system("cls");
-            loadProcess(); //???
+            simulate();
             break;
-          case 2: // Select Desease
-            system("cls");
-            break;
-          case 3: // Select Measure
-            system("cls");
-            break;
-          case 4: // Simulation
-            system("cls");
-            simulateEpidemic();
-            break;
-          case 5: // Rewind time
+          case 2: // Rewind time
             if (/*булевая переменная*/ == True) {
               cout << "RewindTime is currently in progress. Please wait until it's completed." << endl;
             } else {
@@ -58,13 +44,9 @@ void console_menu() {
               RewindTime();
             }
             break;
-          case 6: // Pause
+          case 3: // Pause
             cout << "Choose an option and enter its number two times" << endl;
             system("pause");
-            break;
-          case 7: // Save progress
-            system("cls");
-            saveProcess(); //???
             break;
         }
         break;
@@ -84,14 +66,12 @@ void console_menu() {
           case 1: // Add/change Desease
             system("cls");
             addVirusFromConsole();
-            save(); //???
             break;
           case 2: // Add/change Measure
             system("cls");
             addMeasuresFromConsole();
             redRates(rates, mod);
             redSesonality(sesonality, mod);
-            save(); //???
             break;
         }
         break;
