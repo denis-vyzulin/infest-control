@@ -7,8 +7,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "virus.h"
-#include "measure.h"
+#include "Desease.h"
+#include "Measure.h"
 
 class EpidemicSimulation {
 public:
