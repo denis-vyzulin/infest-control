@@ -45,14 +45,31 @@ bool status = measure.getStatus();
 if (status) {
 std::cout « "Применение противодействий" « std::endl;
 
-// Применение противодействий к вирусу
-// ...
+// Уменьшение инфекционности вируса
+double infectivity = virus.getInfectivity();
+double reducedInfectivity = infectivity * measure.getInfectionReduction();
+virus.setInfectivity(reducedInfectivity);
+
+// Уменьшение смертности вируса
+double mortality = virus.getMortality();
+double reducedMortality = mortality * measure.getMortalityReduction();
+virus.setMortality(reducedMortality);
 }
 }
 
 void EpidemicSimulation::updateEpidemic(Epidemic& epidemic, const Virus& virus) {
 // Обновление статистики эпидемии
-// ...
+double infectivity = virus.getInfectivity();
+double newInfected = infectivity * epidemic.total_infected;
+epidemic.total_infected += newInfected;
+
+double mortality = virus.getMortality();
+double newDeaths = mortality * epidemic.total_infected;
+epidemic.total_dead += newDeaths;
+
+double recovery = virus.getRecovery();
+double newRecoveries = recovery * epidemic.total_infected;
+epidemic.total_recovered += newRecoveries;
 }
 
 void EpidemicSimulation::saveSimulation(const std::vector<Epidemic>& epidemics) {
