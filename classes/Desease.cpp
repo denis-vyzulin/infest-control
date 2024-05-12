@@ -2,8 +2,10 @@
 // == КЛАСС БОЛЕЗНЕЙ, ВИРУСОВ == //
 // ============================= //
 #include "Desease.h"
+#include <iostream>
 
-Virus::Virus(const std::string& n, double lr, int ip, double rr) : name(n), lethal_rate(lr), incubation_period(ip), reproduction_rate(rr) {}
+Virus::Virus(const std::string& n, double lr, int ip, double rr)
+    : name(n), lethal_rate(lr), incubation_period(ip), reproduction_rate(rr) {}
 
 void EpidemicSystem::addVirusFromConsole() {
     std::string name;
@@ -23,4 +25,3 @@ void EpidemicSystem::addVirusFromConsole() {
     Virus new_virus(name, lethal_rate, incubation_period, reproduction_rate);
     active_epidemics.emplace_back(new_virus);
 }
-#include <iostream>
