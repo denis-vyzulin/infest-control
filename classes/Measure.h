@@ -14,8 +14,6 @@ class Measure {
 	private:
 		// Status of activity (active or inactive)
 		bool _status;
-		// Ratios (???)
-		std::vector<int> _ratios;
 		// Seasonality (Winter, Spring, Summer, Autumn)
 		std::vector<int> _seasonality;
 };
@@ -23,7 +21,6 @@ class Measure {
 // SETTERS
 namespace msrsetters {
 	void set_status(bool _status);
-	void set_ratios(std::vector<int>& _ratios);
 	void set_seasonality(std::vector<int>& _seasonality);
 }
 
