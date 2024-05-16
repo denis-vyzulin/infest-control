@@ -22,8 +22,8 @@ namespace Measure_set {
 	void setRates(std::vector<int>& rates);
 	void getRates(std::vector<int>& rates);
 	// Seasonality (Winter, Spring, Summer, Autumn)
-	void setSesonality(std::vector<int>& sesonality);
-	void getSesonality(std::vector<int>& sesonality);
+	void setSeasonality(std::vector<int>& sesonality);
+	void getSeasonality(std::vector<int>& sesonality);
 }
 
 namespace Measure_data {

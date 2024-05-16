@@ -15,9 +15,9 @@ void Measure_set::setRates(std::vector<int>& rates) {
 	_rates.assign(rates.begin(), rates.end());
 }
 
-void Measure_set::setSesonality(std::vector<int>& sesonality) {
+void Measure_set::setSeasonality(std::vector<int>& seasonality) {
 
-	_sesonality.assign(sesonality.begin(), sesonality.end())
+	_sesonality.assign(seasonality.begin(), seasonality.end())
 }
 
 int Measure_set::getStatus() {
@@ -30,9 +30,9 @@ void Measure::getRates(std::vector<int>& rates) {
 	rates.assign(_rates.begin(), _rates.end());
 }
 
-void Measure::getSesonality(std::vector<int>& sesonality) {
+void Measure::getSeasonality(std::vector<int>& seasonality) {
 
-	sesonality.assign(_sesonality.begin(), _sesonality.end())
+	seasonality.assign(_seasonality.begin(), _seasonality.end())
 }
 
 void Measure_data::redRates(std::vector<int>& rates, unsigned int mod) {
@@ -69,38 +69,38 @@ void Measure_data::redRates(std::vector<int>& rates, unsigned int mod) {
 	Measure::setRates(&rates);
 }
 
-void Measure_data::redSesonality(std::vector<int>& sesonality, unsigned int mod) {
+void Measure_data::redSeasonality(std::vector<int>& seasonality, unsigned int mod) {
 
 	int getdat, getdat_v;
 	switch (mod) {
 	case 1:
 		cout << "print new modifier for new seson" << endl;
 		cin >> getdat;
-		sesonality.push_back(getdat);
+		seasonality.push_back(getdat);
 		cout << "new list of modifiers: " << endl;
-		Measure_data::outSesonality(&sesonality);
+		Measure_data::outSeasonality(&seasonality);
 		break;
 	case 2:
 		cout << " select the modifier, that you want delete";
-		Measure_data::outSesonality(&sesonality);
+		Measure_data::outSeasonality(&seasonality);
 		cin >> getdat;
-		sesonality.erase(getdat);
+		seasonality.erase(getdat);
 		cout << "new list of modifiers: " << endl;
-		Measure_data::outSesonality(&sesonality);
+		Measure_data::outSeasonality(&seasonality);
 		break;
 	case 3:
 		cout << "select the modifier, that you wand change";
-		Measure_data::outSesonality(&sesonality);
+		Measure_data::outSeasonality(&seasonality);
 		cin >> getdat;
 		cout << "print new value of modifier";
 		cin >> getdat_v;
-		sesonality.at(getdat) = getdat_v;
+		seasonality.at(getdat) = getdat_v;
 		cout << "new list of modifiers: " << endl;
-		Measure_data::outSesonality(&sesonality);
+		Measure_data::outSeasonality(&seasonality);
 		break;
 	}
 
-	Measure::setSesonality(&sesonality);
+	Measure::setSeasonality(&sesonality);
 }
 
 void Measure_data::outRates(std::vector<int>& rates) {
@@ -110,10 +110,11 @@ void Measure_data::outRates(std::vector<int>& rates) {
 	cout << endl;
 }
 
-void Measure_data::outSesonality(std::vector<int>& sesonality) {
 
-	for (int i = 0; i < sesonality.size(); i++)
-		cout << i << ". " << sesonality.at(i) << ' ';
+void Measure_data::outSeasonality(std::vector<int>& seasonality) {
+
+	for (int i = 0; i < seasonality.size(); i++)
+		cout << i << ". " << seasonality.at(i) << ' ';
 	cout << endl;
 }
 
