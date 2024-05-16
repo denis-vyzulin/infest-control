@@ -1,39 +1,44 @@
-// =========================== //
-// == КЛАСС болезни == //
-// =========================== //
+// =================== //
+// == CLASS DESEASE == //
+// =================== //
 
-#ifndef VIRUS_H
-#define VIRUS_H
+#ifndef DESEASE_H
+#define DESEASE_H
 
 #include <string>
 #include <vector>
 
-class Virus {
-private:
-    std::string name;
-    double lethal_rate;
-    int incubation_period;
-    double reproduction_rate;
 
-public:
-    Virus(const std::string& n, double lr, int ip, double rr);
+// DESEASE
+class Desease {
+  private:
+    std::string _name;
+    bool _status; // Cured or not
+    int _duration;
+    int _lethalis; // Dead by day
+    std::vector<int> _seasonality;
 
-    // Геттеры и сеттеры (если необходимо)
-    const std::string& getName() const { return name; }
-    double getLethalRate() const { return lethal_rate; }
-    int getIncubationPeriod() const { return incubation_period; }
-    double getReproductionRate() const { return reproduction_rate; }
+  public:
+    Desease(const std::string& n, bool st, int lt, int dt, const std::vector<int>& sn);
 };
 
-class EpidemicSystem {
-public:
-    void addVirusFromConsole();
-    // Другие методы, связанные с эпидемиологической системой
+// SETTERS
+namespace dsesetters {
+  void set_name(std::string& _name);
+  void set_status(bool _status);
+  void set_duration(int _duration);
+  void set_lethalis(int _lethalis);
+  void set_seasonality(std::vector<int>& _seasonality);
+}
 
-private:
-    std::vector<Virus> active_epidemics;
-};
+// GETTERS
+namespace dsegetters {
+  const std::string get_name(std::string& _name);
+  bool get_status(bool _status);
+  int get_duration(int _duration);
+  int get_lethalis(int _lethalis);
+  const std::vector<int> get_seasonality(std::vector<int>& _seasonality);
+}
 
-#endif // VIRUS_H
 
-#include <iostream>
+#endif // DESEASE_H

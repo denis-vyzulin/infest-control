@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-#include <iostream>
-=======
 // ============================== //
 // == ВЗАИМОДЕЙСТВИЕ С ФАЙЛАМИ == //
 // ============================== //
@@ -22,4 +19,3 @@ namespace File {
 	bool getMeasure(vector<Measure>& measure);
 }
 #endif
->>>>>>> db4cd2304f8232e043036ec15920e33de1d23268

@@ -1,62 +1,37 @@
-// =========================== //
-// == КЛАСС ПРОТИВОДЕЙСТВИЙ == //
-// =========================== //
+// =================== //
+// == CLASS MEASURE == //
+// =================== //
+
+#ifndef MEASURE_H_
+#define MEASURE_H_
 
 #include <iostream>
 #include <vector>
 
-#ifndef MEASURES_H_
-#define MEASURES_H_
 
+// MEASURE
 class Measure {
-private:
-	bool _status;
-	std::vector<int> _rates;
-	std::vector<int> _sesonality;
+	private:
+		// Status of activity (active or inactive)
+		bool _status;
+		// Ratios (???)
+		std::vector<int> _ratios;
+		// Seasonality (Winter, Spring, Summer, Autumn)
+		std::vector<int> _seasonality;
 };
-namespace Measure_set {
-	// Status of activity (active or inactive)
-	void setStatus(const bool status);
-	int getStatus();
-	// Rates ???
-	void setRates(std::vector<int>& rates);
-	void getRates(std::vector<int>& rates);
-	// Seasonality (Winter, Spring, Summer, Autumn)
-	void setSesonality(std::vector<int>& sesonality);
-	void getSesonality(std::vector<int>& sesonality);
+
+// SETTERS
+namespace msrsetters {
+	void set_status(bool _status);
+	void set_ratios(std::vector<int>& _ratios);
+	void set_seasonality(std::vector<int>& _seasonality);
 }
 
-namespace Measure_data {
-	// Redaction data of measures
-	void redRates(std::vector<int>& rates, unsigned int mod);
-	void redSesonality(std::vector<int>& sesonality, unsigned int mod);
-	// Output to the console data of measures
-	void outRates(std::vector<int>& rates);
-	void outSesonality(std::vector<int>& sesonality);
+// GETTERS
+namespace msrgetters {
+	bool get_status(const bool _status);
+	std::vector<int> msrgetters::get_seasonality(std::vector<int>& _seasonality);
 }
 
-#endif
-
-#ifndef MEASURE_H
-#define MEASURE_H
-
-#include <vector>
-
-class Measure {
-public:
-    void setStatus(const bool status);
-    int getStatus();
-
-    void setRates(const std::vector<int>& rates);
-    void getRates(std::vector<int>& rates);
-
-    void setSeasonality(const std::vector<int>& seasonality);
-    void getSeasonality(std::vector<int>& seasonality);
-
-private:
-    bool _status;
-    std::vector<int> _rates;
-    std::vector<int> _seasonality;
-};
 
 #endif // MEASURE_H

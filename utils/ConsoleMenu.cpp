@@ -2,20 +2,17 @@
 // == CONSOLE MENU == //
 // ================== //
 
-<<<<<<< HEAD
 #include <iostream>
 #include <stdlib.h>
 #include <cstdlib>
 
 //==> IMPORT OPTIONAL FUNCTIONS
-#include <utils/FileInteraction.h>
-#include <utils/RewindTime.h>
+#include "FileInteraction.h"
+#include "RewindTime.h"
+#include "ConsoleMenu.h"
 
 using namespace std;
 
-=======
-#include "ConsoleMenu.h"
->>>>>>> db4cd2304f8232e043036ec15920e33de1d23268
 
 
 void console_menu() {
