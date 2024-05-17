@@ -16,11 +16,11 @@ EpidemicSimulation::EpidemicSimulation() {
 
 
 // Simulate progress
-void EpidemicSimulation::simulate(const Virus& virus, const Measure& measure, int duration) {
+void EpidemicSimulation::simulate(const Desease& desease, const Measure& measure, int duration) {
   std::vector<Epidemic> epidemics;
-  Epidemic epidemic(virus);
+  Epidemic epidemic(desease);
   epidemics.push_back(epidemic);
-
+  // Simulate logic
   while (day < duration) {
     std::cout << "День " << day << std::endl;
     for (auto& epidemic : epidemics) {
@@ -28,52 +28,53 @@ void EpidemicSimulation::simulate(const Virus& virus, const Measure& measure, in
       double dead = epidemic.total_dead;
       double recovered = epidemic.total_recovered;
       // Utilizing measures to deseases
-      applyMeasures(virus, measure);
+      apply_measures(desease, measure);
       // Change stat of epidemic
-      updateEpidemic(epidemic, virus);
+      update_epidemic(epidemic, desease);
       // Print statistic
-      std::cout << "Вирус: " << epidemic.virus.getName() << std::endl;
-      std::cout << "Зараженных: " << epidemic.total_infected - infected << std::endl;
-      std::cout << "Умерших: " << epidemic.total_dead - dead << std::endl;
-      std::cout << "Выздоровевших: " << epidemic.total_recovered - recovered << std::endl;
+      std::cout << "Болезнь: " << epidemic.desease.get_name() << std::endl;
+      std::cout << "Infected: " << epidemic.total_infected - infected << std::endl;
+      std::cout << "Dead: " << epidemic.total_dead - dead << std::endl;
+      std::cout << "Recovered: " << epidemic.total_recovered - recovered << std::endl;
     }
     day++;
   }
-
+  // Save changes
   saveSimulation(epidemics);
 }
 
 
 // Use all measures to deseases
-void EpidemicSimulation::applyMeasures(const Desease& desease, const Measure& measure) {
-  bool status = measure.getStatus();
-
+void EpidemicSimulation::apply_measures(const Desease& desease, const Measure& measure) {
+  bool status = measure.get_status();
   if (status) {
-    std::cout << "Применение противодействий" << std::endl;
+    std::cout << "Utilizing measures..." << std::endl;
     // Decrease infectivity
-    double infectivity = desease.getInfectivity();
-    double reducedInfectivity = infectivity * measure.getInfectionReduction();
-    desease.setInfectivity(reducedInfectivity);
+    double duration = desease.get_duration();
+    double reduced_duration = duration * measure.get_seasonality( (EpidemicSimulation::day / 90 + 1) % 4 );
+    desease.set_duration(reduced_duration);
     // Decrease deads
-    double mortality = desease.getMortality();
-    double reducedMortality = mortality * measure.getMortalityReduction();
-    desease.setMortality(reducedMortality);
+    double lethalis = desease.get_lethalis();
+    double reduced_lethalis = lethalis * measure.get_seasonality( (EpidemicSimulation::day / 90 + 1) % 4 );
+    desease.set_lethalis(reduced_lethalis);
   }
 }
 
-void EpidemicSimulation::updateEpidemic(Epidemic& epidemic, const Virus& desease) {
-// Обновление статистики эпидемии
-double infectivity = desease.getInfectivity();
-double newInfected = infectivity * epidemic.total_infected;
-epidemic.total_infected += newInfected;
 
-double mortality = desease.getMortality();
-double newDeaths = mortality * epidemic.total_infected;
-epidemic.total_dead += newDeaths;
+// Update epidemics
+void EpidemicSimulation::update_epidemic(Epidemic& epidemic, const Desease& desease) {
+  // Обновление статистики эпидемии
+  double infectivity = desease.getInfectivity();
+  double newInfected = infectivity * epidemic.total_infected;
+  epidemic.total_infected += newInfected;
 
-double recovery = desease.getRecovery();
-double newRecoveries = recovery * epidemic.total_infected;
-epidemic.total_recovered += newRecoveries;
+  double mortality = desease.getMortality();
+  double newDeaths = mortality * epidemic.total_infected;
+  epidemic.total_dead += newDeaths;
+
+  double recovery = desease.getRecovery();
+  double newRecoveries = recovery * epidemic.total_infected;
+  epidemic.total_recovered += newRecoveries;
 }
 
 void EpidemicSimulation::saveSimulation(const std::vector<Epidemic>& epidemics) {

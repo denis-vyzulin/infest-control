@@ -1,92 +1,107 @@
+// ============================= //
+// == INTERACTIONS WITH FILES == //
+// ============================= //
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+#include "Desease.h"
+#include "Measure.h"
 #include "FileInteraction.h"
 
-bool File::outVirus(vector<Virus>& virus, int end_of_vector) {
-	ofstream output("db/Disease.txt");
+using namespace std;
+
+
+// GETTER > DESEASE
+bool File::get_desease(vector<Desease>& desease, int end_of_vector) {
+	// Open file with saved deseases
+	ofstream output("db/Deseases.txt");
 	if (output.is_open() != false)
 		return false;
+	// Print values
 	for (int i = 0; i < end_of_vector; i++) {
-		output << virus[i].getName() << " ";
-		output << virus[i].getLethalRate() << " ";
-		output << virus[i].getIncubationPeriod() << " ";
-		output << virus[i].getReproductionRate() << '\n';
+		output << virus[i].get_name() << " ";
+		output << virus[i].get_duration() << " ";
+		output << virus[i].get_lethalis() << " ";
+		output << virus[i].get_seasonality() << '\n';
 	}
+	// Close it
 	input.close();
 	return true;
 }
-bool File::getVirus(vector<Virus>& virus) {
-	char c;
-	int i = 0;
-	std::string name;
-	double lethal_rate, reproduction_rate;
-	int incubation_period;
 
-	ifstream intput("db/Epidemic.txt");
+
+// SETTER > DESEASE
+bool File::set_desease(vector<Desease>& desease) {
+	string name;
+	int lethalis, duration;
+	vector<int> seasonality;
+	// Open file with saved deseases
+	ifstream input("db/Epidemic.txt");
 	if (intput.is_open() != false)
 		return false;
-
+	// Set deseases
+	int i = 0;
 	while (input.eof()!=false){
-		input >> name >> lethal_rate >> incubation_period >> reproduction_rate;
-		virus[i].setName(name);
-		virus[i].setLethalRate(lethal_rate);
-		virus[i].setIncubationPeriod(incubation_period);
-		virus[i].setReproductionRate(reproduction_rate);
+		input >> name >> lethalis >> duration >> seasonality;
+		virus[i].set_name(name);
+		virus[i].set_duration(duration);
+		virus[i].set_lethalis(lethalis);
+		virus[i].set_seasonality(seasonality);
+		// Enter key == close
+		char c;
 		if (input.get(c) == '\n')
 			i++;
 	}
+	// Close it
 	input.close();
 	return true;
 }
-bool File::outMeasure(vector<Measure>& measure, int end_of_vector) {
-	
+
+
+// GETTER > MEASURE
+bool File::get_measure(vector<Measure>& measure, int end_of_vector) {
 	bool status; 
-	vector<int> rates;
 	vector<int> seasonality;
-
-	status = Measure_set::getStatus();
-	Measure_set:::getRates(&rates);
-	Measure_set::getSeasonality(&seasonality);
-
+	// Get measure data
+	status = msrgetters::get_status();
+	msrgetters::get_seasonality(&seasonality);
+	// Open file with all measures
 	ofstream output("db/Measure.txt");
 	if (output.is_open() != false)
 		return false;
+	// Print measures
 	for (int i = 0; i < end_of_vector; i++) {
 		output << status << " ";
-		for (int i2 = 0; i2<rates.size();i2++)
-			output << rates[i2] << " ";
 		output << "I " << seasonality.size();
 		for (int i2 = 0; i2 < seasonality.size(); i2++)
 			output << seasonality[i2] << " ";
 		output << '\n';
 	}
+	// Close it
 	output.close();
 	return true;
 }
-bool File::getMeasure(vector<Measure>& measure) {
-	char c;
-	int i = 0,i2 = 0, end;
+
+
+// SETTER > MEASURE
+bool File::set_measure(vector<Measure>& measure) {
 	bool status;
-	vector<int> rates;
 	vector<int> seasonality;
-
-	ifstream intput("db/Measure.txt");
-	if (intput.is_open() != false)
+	// Open file with all measures
+	ifstream input("db/Measures.txt");
+	if (input.is_open() != false)
 		return false;
-
+	// Set new measure
 	while (input.eof() != false) {					
 		input >> status;
-		while (input.get(c) != 'I') {
-			input >> rates[i];
-			i++;
-		}
-		input >> end;
-		for (i = 0; i < end; i++)
+		for (int i = 0; i < 4; i++)
 			input >> seasonality[i];
-		measure[i2].Measure_set::setStatus(&status);
-		measure[i2].Measure_set::setRates(&rates);
-		measure[i2].Measure_set::setSeasonality(&seasonality);
-		i2++;
+		measure[i2].msrsetters::set_status(&status);
+		measure[i2].msrsetters::set_seasonality(&seasonality);
 	}
-
+	// Close it
 	input.close();
 	return true;
 }
