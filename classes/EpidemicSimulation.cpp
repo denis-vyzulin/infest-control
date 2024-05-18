@@ -8,7 +8,6 @@
 #include "Epidemic.h"
 
 
-
 // Save now day
 EpidemicSimulation::EpidemicSimulation() {
   day = 0;

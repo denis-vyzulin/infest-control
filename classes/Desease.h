@@ -1,44 +1,37 @@
-// =================== //
-// == CLASS DESEASE == //
-// =================== //
+// ========================== //
+// === DESEASE DEFINITION === //
+// ========================== //
 
-#ifndef DESEASE_H
-#define DESEASE_H
-
+#include <iostream>
 #include <string>
-#include <vector>
 
 
-// DESEASE
+#ifndef DESEASE_H_
+#define DESEASE_H_
+
 class Desease {
-  private:
-    std::string _name;
-    bool _status; // Cured or not
-    int _duration;
-    int _lethalis; // Dead by day
-    std::vector<int> _seasonality;
-
   public:
-    Desease(const std::string& n, bool st, int lt, int dt, const std::vector<int>& sn);
-};
+    std::string _name;
+    // Duration of desease
+    int _incubation;
+    // Chance of death
+    double _lethalis;
+    // New infected by day
+    double _spread;
+}
 
-// SETTERS
 namespace dsesetters {
-  void set_name(std::string& _name);
-  void set_status(bool _status);
-  void set_duration(int _duration);
-  void set_lethalis(int _lethalis);
-  void set_seasonality(std::vector<int>& _seasonality);
+  void set_name(vector<Desease>& desease, std::string& name);
+  void set_incubation(vector<Desease>& desease, int incubation);
+  void set_lethalis(vector<Desease>& desease, double lethalis);
+  void set_spread(vector<Desease>& desease, double spread);
 }
 
-// GETTERS
 namespace dsegetters {
-  const std::string get_name(std::string& _name);
-  bool get_status(bool _status);
-  int get_duration(int _duration);
-  int get_lethalis(int _lethalis);
-  const std::vector<int> get_seasonality(std::vector<int>& _seasonality);
+  std::string get_name(vector<Desease>& desease);
+  int get_incubation(vector<Desease>& desease);
+  double get_lethalis(vector<Desease>& desease);
+  double get_spread(vector<Desease>& desease);
 }
 
-
-#endif // DESEASE_H
+#endif // DESEASE_H_
